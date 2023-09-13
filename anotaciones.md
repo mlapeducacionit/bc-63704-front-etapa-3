@@ -40,4 +40,26 @@ npm run build # Genera la carpeta dist (distribución)
 npm run preview # o Live Server
 ```
 
+## Cada vez que yo inicio el desarrollo
+
+> FRONTEND
+
+```sh
+npm run dev
+```
+
+> BACKEND
+
+```sh
+npm run server
+```
+
+Si no tengo instalado JSON-SERVER
+
+```sh
+npm i json-server -g # Lo instala Global en máquina
+npm i json-server -D # Para desarrollo en este proyecto.
+```
+
+
 
