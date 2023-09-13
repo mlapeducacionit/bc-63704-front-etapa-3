@@ -1,7 +1,12 @@
+import { useContext } from 'react'
 import Card from '../components/Card'
 import './Inicio.scss'
+import ProductoContext from '../contexts/ProductoContext'
 
 const Inicio = () => {
+  const { productos } = useContext(ProductoContext)
+  console.log(productos)
+
   return (
     <main>
       <section className="section-cards"> 
@@ -12,7 +17,11 @@ const Inicio = () => {
 
         <div className="cards-container">
           
-          <Card />
+          {
+            productos && productos.map( (producto, idx) => (
+                <Card key={idx} producto={producto} />
+              ))
+          }
 
         </div>
 

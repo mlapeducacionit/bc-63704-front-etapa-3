@@ -11,24 +11,27 @@ import Contacto from './pages/Contacto'
 import Carrito from './pages/Carrito'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import { ProductoProvider } from './contexts/ProductoContext'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <ProductoProvider >
+      <BrowserRouter>
 
-      <Header />
+        <Header />
 
-      <Routes>
-        <Route path="/" element={<Inicio />} />
-        <Route path="/alta" element={<Alta />} />
-        <Route path="/nosotros" element={<Nosotros />} />
-        <Route path="/contacto" element={<Contacto />} />
-        <Route path="/carrito" element={<Carrito />} />
-        <Route path="*" element={<Inicio />} />
-      </Routes>
-    
-      <Footer />
+        <Routes>
+          <Route path="/" element={<Inicio />} />
+          <Route path="/alta" element={<Alta />} />
+          <Route path="/nosotros" element={<Nosotros />} />
+          <Route path="/contacto" element={<Contacto />} />
+          <Route path="/carrito" element={<Carrito />} />
+          <Route path="*" element={<Inicio />} />
+        </Routes>
+      
+        <Footer />
 
-    </BrowserRouter>
+      </BrowserRouter>
+    </ProductoProvider>
   </React.StrictMode>,
 )
