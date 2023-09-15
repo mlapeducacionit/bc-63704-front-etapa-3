@@ -1,11 +1,11 @@
 {
   "productos": [
     {
-      "nombre": "IPhone 11 Pro Max",
+      "nombre": "IPhone 15 Pro Max",
       "foto": "img/apple-iphone-11-pro-max.jpg",
       "detalles": "Lorem ipsum dolor sit, amet consectetur adipisicing.",
       "precio": 250.5,
-      "stock": "4",
+      "stock": "4444",
       "marca": "Apple",
       "categoria": "celulares",
       "id": 1,
@@ -33,6 +33,7 @@
       "marca": "Sleek Cotton Chips",
       "categoria": "Refined",
       "id": 3,
+      "envio": false,
       "cantidad": 1
     },
     {
@@ -44,6 +45,7 @@
       "marca": "Rustic Soft Tuna",
       "categoria": "Generic",
       "id": 4,
+      "envio": true,
       "cantidad": 3
     },
     {

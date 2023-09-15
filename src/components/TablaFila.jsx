@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import './TablaFila.scss'
 import ProductoContext from '../contexts/ProductoContext'
 
-const TablaFila = ({ producto }) => {
+const TablaFila = ({ producto, setProductoAEditar }) => {
   const { eliminarProductoContext } = useContext(ProductoContext)
 
   const handleDelete = (id) => {
@@ -19,6 +19,9 @@ const TablaFila = ({ producto }) => {
     }
 
   }
+  const handleUpdate = (producto) => {
+    setProductoAEditar(producto)
+  }
 
   return (
     <tr>
@@ -32,7 +35,7 @@ const TablaFila = ({ producto }) => {
           </td>
           <td>{producto.envio ? 'Si' : 'No'}</td>
           <td>
-            <button>Editar</button>
+            <button onClick={() => handleUpdate(producto)}>Editar</button>
             <button onClick={() => handleDelete(producto.id)}>Eliminar</button>
           </td>
     </tr>

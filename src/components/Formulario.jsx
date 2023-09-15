@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import ProductoContext from '../contexts/ProductoContext'
 
 const formInicial = {
@@ -13,9 +13,14 @@ const formInicial = {
     envio: false,
 }
 
-const Formulario = () => {
+const Formulario = ( { productoAEditar, setProductoAEditar }) => {
   const [form, setForm] = useState(formInicial)
-  const { crearProductoContext } = useContext(ProductoContext)
+  const { crearProductoContext, actualizarProductoContext } = useContext(ProductoContext)
+
+  useEffect(() => {
+    productoAEditar ? setForm(productoAEditar) : setForm(formInicial)
+  }, [productoAEditar, setProductoAEditar])
+
 
   const handleChange = (e) => {
     const { type, name, checked, value } = e.target
@@ -29,9 +34,19 @@ const Formulario = () => {
     e.preventDefault()
     console.log('Se detuvo el comporamiento por defecto del formulario')
 
-    await crearProductoContext(form)
+    try {
 
-    handleReset()
+      if (form.id === null) {
+        await crearProductoContext(form)
+      } else {
+        await actualizarProductoContext(form)
+      }
+
+      handleReset()
+    } catch (error) {
+      console.error('Algo ocurrió en el handleSubmit', error)
+    }
+
   }
 
   const handleReset = () => {

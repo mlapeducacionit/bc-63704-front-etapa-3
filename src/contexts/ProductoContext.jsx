@@ -1,5 +1,5 @@
 import { useState, createContext, useEffect } from "react"
-import { del, get, post } from "../utils/http"
+import { del, get, post, put } from "../utils/http"
 /* CREANDO CONTEXTO */
 /* 1er -> Creación del contexto */
 const ProductoContext = createContext()
@@ -31,6 +31,17 @@ const ProductoProvider = ( { children } ) => {
         }
     }
 
+    const actualizarProductoContext = async (productoAEditar) => {
+        try {
+            const productoEditado = await put(url, productoAEditar.id, productoAEditar)
+            console.log(productoEditado)
+            const nuevaDB = productos.map( producto => producto.id === productoEditado.id ? productoEditado : producto)
+            setProductos(nuevaDB)
+        } catch (error) {
+            console.error('Ocurrió un problema en actualizarProductoContext', error)
+        }
+    }
+
     const eliminarProductoContext = async (id) => {
         try {
             const productoEliminado = await del(url, id)
@@ -42,7 +53,7 @@ const ProductoProvider = ( { children } ) => {
         }
     }
 
-    const data = {productos, crearProductoContext, eliminarProductoContext}
+    const data = {productos, crearProductoContext, eliminarProductoContext, actualizarProductoContext}
 
     return <ProductoContext.Provider value={data}>{children}</ProductoContext.Provider>
 }
