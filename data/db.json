@@ -90,17 +90,6 @@
       "detalles": "Piola. 8k",
       "foto": "img/apple-iphone-11-pro-max.jpg",
       "envio": true
-    },
-    {
-      "id": 9,
-      "nombre": "Producto Y",
-      "precio": "2222",
-      "stock": "3",
-      "marca": "Samsung",
-      "categoria": "Electro",
-      "detalles": "No necesario",
-      "foto": "img/apple-iphone-11-pro-max.jpg",
-      "envio": true
     }
   ]
 }

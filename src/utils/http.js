@@ -37,3 +37,23 @@ export const post = async (url, dato) => {
         console.error('ERROR POST', error)
     }
 }
+
+export const del = async (url, id) => {
+    try {
+        const config = {
+            method: 'DELETE'
+        }
+        const urlFull = url + id
+        console.log(urlFull)
+        const respuesta = await fetch(urlFull, config)
+        if ( !respuesta.ok ) {
+            throw new Error(`Ocurrió un problema ${respuesta.status} ${respuesta.statusText}`)
+        }
+        const productoEliminado = await respuesta.json()
+        return productoEliminado
+
+    } catch (error) {
+        console.error('ERROR DELETE', error)
+    }
+
+}
