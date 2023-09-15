@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import './Header.scss'
 import Navbar from './Navbar'
 
@@ -15,7 +16,7 @@ const Header = () => {
         <input type="search" className="search-bar__form-search" id="busqueda" />
         <input type="submit" className="search-bar__form-submit" value="Buscar" />
       </form>
-      <div className="search-bar__carrito-container">C</div>
+      <Link className="search-bar__carrito-container" to="/carrito">C</Link>
       <div className="menu-toogle">
         <label htmlFor="menu" className="menu-toogle__label">
           <span className="menu-toogle__top-bread"></span>
