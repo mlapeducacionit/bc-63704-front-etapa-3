@@ -1,4 +1,5 @@
 
+/* CRUD => R:READ => GET */
 export const get = async (url) => {
 
     const config = {
@@ -17,6 +18,7 @@ export const get = async (url) => {
     }
 }
 
+/* CRUD => C:CREAT => POST */
 export const post = async (url, dato) => {
     try {
 
@@ -38,6 +40,29 @@ export const post = async (url, dato) => {
     }
 }
 
+/* CRUD => U:UPDATE => PUT */
+export const put = async (url, id, dato) => {
+    try {
+        const config = {
+            method: 'PUT',
+            headers: { 'content-type': 'application/json'},
+            body: JSON.stringify(dato)
+        }
+        const urlFull = url + id
+        const respuesta = await fetch(urlFull, config)
+        if (!respuesta.ok) {
+            throw new Error(`Ocurrió un problema ${respuesta.status} ${respuesta.statusText}`)
+        } 
+        const productoEditado = await respuesta.json()
+        return productoEditado
+
+    } catch (error) {
+        console.error("Error PUT", error)
+    }
+}
+
+
+/* CRUD => D:DELETE => DELETE */
 export const del = async (url, id) => {
     try {
         const config = {
