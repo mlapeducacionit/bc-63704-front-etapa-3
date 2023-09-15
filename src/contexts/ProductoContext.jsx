@@ -5,7 +5,7 @@ import { del, get, post, put } from "../utils/http"
 const ProductoContext = createContext()
 
 /* 2do -> El armado del Provider */
-const url = 'http://localhost:8080/productos/'
+const url = import.meta.env.VITE_URL
 const ProductoProvider = ( { children } ) => {
     const [productos, setProductos] = useState(null)
 
