@@ -8,7 +8,9 @@ const TablaFila = ({ producto }) => {
           <td>{producto.stock}</td>
           <td>{producto.categoria}</td>
           <td>{producto.detalles}</td>
-          <td>{producto.foto}</td>
+          <td>
+            <img className="img-row" src={producto.foto} alt={producto.nombre} />
+          </td>
           <td>{producto.envio ? 'Si' : 'No'}</td>
           <td>
             <button>Editar</button>

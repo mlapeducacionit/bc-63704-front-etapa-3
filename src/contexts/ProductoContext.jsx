@@ -1,5 +1,5 @@
 import { useState, createContext, useEffect } from "react"
-import { get } from "../utils/http"
+import { get, post } from "../utils/http"
 /* CREANDO CONTEXTO */
 /* 1er -> Creación del contexto */
 const ProductoContext = createContext()
@@ -22,7 +22,16 @@ const ProductoProvider = ( { children } ) => {
         }
     }
 
-    const data = {productos}
+    const crearProductoContext = async (productoNuevo) => {
+        try {
+            const productoCreado = await post(url, productoNuevo)
+            setProductos([...productos, productoCreado])
+        } catch (error) {
+            console.error('Algo pasó en el crearProductoContext', error)
+        }
+    }
+
+    const data = {productos, crearProductoContext}
 
     return <ProductoContext.Provider value={data}>{children}</ProductoContext.Provider>
 }
