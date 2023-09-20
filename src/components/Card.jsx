@@ -1,15 +1,18 @@
+import { useContext } from "react";
 import "./Card.scss";
+import CarritoContext from "../contexts/CarritoContext";
 
 const Card = ({ producto }) => {
   // console.log(producto)
+  const { agregarCarritoContext } = useContext(CarritoContext)
 
   const handleClick = (producto) => {
-    console.log(producto)
-    //agregarCarritoContext(producto)
+    //console.log(producto)
+    agregarCarritoContext(producto)
   }
   
   return (
-    <a href="#" className="card">
+    <div className="card">
       <article className="card__article">
         <div className="card__image-container">
           <img className="card__image" src={producto.foto} alt={producto.nombre} />
@@ -22,7 +25,7 @@ const Card = ({ producto }) => {
           <button onClick={() => handleClick(producto)}>Agregar</button>
         </div>
       </article>
-    </a>
+    </div>
   );
 };
 
