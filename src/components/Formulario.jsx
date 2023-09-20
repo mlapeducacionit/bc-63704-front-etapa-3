@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import ProductoContext from '../contexts/ProductoContext'
+import { useForm } from '../hooks/useForm'
 
 const formInicial = {
     id: null,
@@ -14,21 +15,12 @@ const formInicial = {
 }
 
 const Formulario = ( { productoAEditar, setProductoAEditar }) => {
-  const [form, setForm] = useState(formInicial)
+  const [form, setForm, handleChange] = useForm(formInicial)
   const { crearProductoContext, actualizarProductoContext } = useContext(ProductoContext)
 
   useEffect(() => {
     productoAEditar ? setForm(productoAEditar) : setForm(formInicial)
   }, [productoAEditar, setProductoAEditar])
-
-
-  const handleChange = (e) => {
-    const { type, name, checked, value } = e.target
-    setForm({
-      ...form,
-      [name]: type === 'checkbox' ? checked : value
-    })
-  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
