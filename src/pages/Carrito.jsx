@@ -3,7 +3,7 @@ import './Carrito.scss'
 import CarritoContext from '../contexts/CarritoContext'
 
 const Carrito = () => {
-  const { carrito, eliminarCarritoContext } = useContext(CarritoContext)
+  const { carrito, eliminarCarritoContext, guardarCarritoContext } = useContext(CarritoContext)
   console.log(carrito)
 
   const handleEliminar = (id) => {
@@ -11,9 +11,14 @@ const Carrito = () => {
     eliminarCarritoContext(id)
   }
 
+  const handleComprar = () => {
+    guardarCarritoContext()
+  }
+
   return (
     <>
       <h1>Listado de productos en el carrito</h1>
+      { !carrito.length <= 0 && <button onClick={handleComprar}>Comprar</button>}
       <table className="tabla-carrito">
         <thead>
          <tr>
