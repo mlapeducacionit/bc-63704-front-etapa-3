@@ -7,7 +7,7 @@ import { post } from "../utils/http";
 const CarritoContext = createContext()
    
 /* 2do -> El armado del Provider */
-const url = 'http://localhost:8080/carrito/'
+const url = import.meta.env.VITE_URL_CARRITO
 
 const CarritoProvider = ( { children } ) => {
     const [ guardarEnElCarrito, eliminarDelCarrito, limpiarCarrito, actualizarCarrito, carrito ] = useLocalStorage('carrito', [])
