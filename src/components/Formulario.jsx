@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
 import ProductoContext from '../contexts/ProductoContext'
 import { useForm } from '../hooks/useForm'
+import DragDrop from './DragDrop'
 
 const formInicial = {
     id: null,
@@ -15,6 +16,10 @@ const formInicial = {
 }
 
 const Formulario = ( { productoAEditar, setProductoAEditar }) => {
+  /* Creamos 2 estados para gestionar el drag and drop */
+  const [foto, setFoto] = useState('')
+  const [srcImagen, setSrcChange] = useState('')
+
   const [form, setForm, handleChange] = useForm(formInicial)
   const { crearProductoContext, actualizarProductoContext } = useContext(ProductoContext)
 
@@ -109,7 +114,7 @@ const Formulario = ( { productoAEditar, setProductoAEditar }) => {
             value={form.detalles}
             onChange={handleChange} />}
         </div>
-        <div>
+       {/*  <div>
           <label htmlFor="lbl-foto">Foto</label>
           <input
             type="text"
@@ -118,7 +123,9 @@ const Formulario = ( { productoAEditar, setProductoAEditar }) => {
             placeholder='Ingrese un foto'
             value={form.foto}
             onChange={handleChange} />
-        </div>
+        </div> */}
+        <DragDrop setFoto={setFoto} srcImagen={srcImagen} setSrcChange={setSrcChange} />
+
         <div>
           <label htmlFor="lbl-envio">Envío</label>
           <input
