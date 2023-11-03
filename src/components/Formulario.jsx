@@ -18,7 +18,7 @@ const formInicial = {
 const Formulario = ( { productoAEditar, setProductoAEditar }) => {
   /* Creamos 2 estados para gestionar el drag and drop */
   const [foto, setFoto] = useState('')
-  const [srcImagen, setSrcChange] = useState('')
+  const [srcImagen, setSrcImagen] = useState('')
 
   const [form, setForm, handleChange] = useForm(formInicial)
   const { crearProductoContext, actualizarProductoContext } = useContext(ProductoContext)
@@ -124,7 +124,7 @@ const Formulario = ( { productoAEditar, setProductoAEditar }) => {
             value={form.foto}
             onChange={handleChange} />
         </div> */}
-        <DragDrop setFoto={setFoto} srcImagen={srcImagen} setSrcChange={setSrcChange} />
+        <DragDrop setFoto={setFoto} srcImagen={srcImagen} setSrcImagen={setSrcImagen} />
 
         <div>
           <label htmlFor="lbl-envio">Envío</label>
