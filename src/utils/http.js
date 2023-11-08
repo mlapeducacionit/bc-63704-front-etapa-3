@@ -20,14 +20,32 @@ export const get = async (url) => {
 
 /* CRUD => C:CREAT => POST */
 export const post = async (url, dato) => {
-    try {
 
-        const config = {
-            method: 'POST',
-            headers: { 'content-type': 'application/json'},
-            body: JSON.stringify(dato)
+    let config = {} 
+
+    try {
+        /* Controlo si es un obj FormData o un obj de js */
+        console.log(dato instanceof FormData)
+        if ( dato instanceof FormData ) { // true o false
+            config = {
+                method: 'POST',
+                body: dato
+            }
+        } else {
+            config = {
+                method: 'POST',
+                headers: { 'content-type': 'application/json'},
+                body: JSON.stringify(dato)
+            }
         }
 
+        /* const config = {
+            method: 'POST',
+            headers: { 'content-type': 'application/json'},
+            body: dato instanceof FormData ? dato : JSON.stringify(dato)
+        } */
+
+        console.log(config)
         const respuesta = await fetch(url, config)
         if ( !respuesta.ok ) {
             throw new Error(`Ocurrió un problema ${respuesta.status} ${respuesta.statusText}`)

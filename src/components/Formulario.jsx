@@ -24,7 +24,13 @@ const Formulario = ( { productoAEditar, setProductoAEditar }) => {
   const { crearProductoContext, actualizarProductoContext } = useContext(ProductoContext)
 
   useEffect(() => {
-    productoAEditar ? setForm(productoAEditar) : setForm(formInicial)
+    if ( productoAEditar ) {
+      setForm(productoAEditar)
+      setSrcImagen(productoAEditar.foto)
+    } else {
+      setForm(formInicial)
+    }
+    // productoAEditar ? setForm(productoAEditar) : setForm(formInicial)
   }, [productoAEditar, setProductoAEditar])
 
   const handleSubmit = async (e) => {
@@ -34,9 +40,11 @@ const Formulario = ( { productoAEditar, setProductoAEditar }) => {
     try {
 
       if (form.id === null) {
-        await crearProductoContext(form)
+        const productoNuevoConImagen = {...form, ...foto}
+        await crearProductoContext(productoNuevoConImagen)
       } else {
-        await actualizarProductoContext(form)
+        const productoNuevoConImagen = {...form, ...foto}
+        await actualizarProductoContext(productoNuevoConImagen)
       }
 
       handleReset()
@@ -48,6 +56,8 @@ const Formulario = ( { productoAEditar, setProductoAEditar }) => {
 
   const handleReset = () => {
     setForm(formInicial)
+    setFoto('')
+    setSrcImagen('')
   }  
 
   return (
